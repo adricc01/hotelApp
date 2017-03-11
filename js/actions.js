@@ -1,5 +1,6 @@
 var fn = {
 	deviceready: function(){
+		alert();
 		document.addEventListener("deviceready", fn.init/*this.init*/, false);
 	},
 	init: function(){
