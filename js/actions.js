@@ -77,4 +77,5 @@ var fn = {
  *Llamar deviceready para compilar
  */
 //
-$(fn.deviceready());
+//$(fn.deviceready());
+fn.deviceready();
