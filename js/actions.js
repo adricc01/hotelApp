@@ -7,6 +7,7 @@ var fn = {
 		 * En esta sección vamos a asociar
 		 * todos los eventos del "Click" al HTML
 		 */
+		alert("Hola");
 		$("#botonRegistrar").tap(fn.registar);
 		$("#botonTomarFoto").tap(mc.abrirCamara);
 	},
@@ -76,4 +77,4 @@ var fn = {
  *Llamar deviceready para compilar
  */
 //
-$(fn.deviceready);
+$(fn.deviceready());
