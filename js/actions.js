@@ -64,9 +64,8 @@ var fn = {
 				tel: telefonoR,
 				password: passwordR
 			}
-		})
-		alert("Datos enviados");
-		.done(function(mensaje){
+		}).done(function(mensaje){
+			alert("Datos enviados");
 			if(mensaje == 1){
 				var fotoURL = fotoR.src;
 				file.transferir(fotoURL);
@@ -74,7 +73,9 @@ var fn = {
 				alert("Error al enviar datos de registro: "+mensaje);
 			}
 		}).fail(function(error){
-			alert(error);
+			alert(error.status);
+			alert(error.message);
+			alert(error.responseText);
 		});
 	}
 };
