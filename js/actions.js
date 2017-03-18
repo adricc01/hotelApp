@@ -54,6 +54,7 @@ var fn = {
 		}
 	},
 	enviarRegistro: function(nombreR, emailR, telefonoR, passwordR, fotoR){
+		alert("Enviando datos");
 		$.ajax({
 			method: "POST",
 			url: "http://www.colors.edu.mx/archivoTest.php",
@@ -64,6 +65,7 @@ var fn = {
 				password: passwordR
 			}
 		})
+		alert("Datos enviados");
 		.done(function(mensaje){
 			if(mensaje == 1){
 				var fotoURL = fotoR.src;
@@ -71,6 +73,8 @@ var fn = {
 			}else{
 				alert("Error al enviar datos de registro: "+mensaje);
 			}
+		}).fail(function(error){
+			alert(error);
 		});
 	}
 };
