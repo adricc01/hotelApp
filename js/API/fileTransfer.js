@@ -4,7 +4,9 @@ var file = {
 		window.location.href="#home";
 	},
 
-	error: function(){
+	error: function(error){
+		alert(error.msg);
+		alert(error.message);
 		alert("Error al enviar foto al servidor.");
 	},
 
