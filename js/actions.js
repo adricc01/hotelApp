@@ -42,6 +42,9 @@ var fn = {
 			if(Number.isNaN(Number(telefono))){
 				throw new Error("El telefono debe ser númerico");
 			}
+			if(telefono == ""){
+				throw new Error("El teléfono es forzozo");
+			}
 			/*
 			 * Registrar al usuario
 			 */
