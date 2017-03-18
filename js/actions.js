@@ -27,11 +27,14 @@ var fn = {
 			if(typeof nombre !== "string"){
 				throw new Error("El nombre no es valido");
 			}
+			if(nombre == ""){
+				throw new Error("El nombre es forzozo");
+			}
 			if(email == ""){
-				throw new Error("El email es forzozo")
+				throw new Error("El email es forzozo");
 			}
 			if(password == ""){
-				throw new Error("El password es forzozo")
+				throw new Error("El password es forzozo");
 			}
 			if(email.indexOf("@") == -1){
 				throw new Error("El email debe contener un arroba");
