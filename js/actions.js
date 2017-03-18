@@ -39,7 +39,7 @@ var fn = {
 			if(email.indexOf("@") == -1){
 				throw new Error("El email debe contener un arroba");
 			}
-			if(Number.isNan(Number(telefono))){
+			if(Number.isNaN(Number(telefono))){
 				throw new Error("El telefono debe ser númerico");
 			}
 			/*
