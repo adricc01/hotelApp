@@ -1,8 +1,8 @@
 var mc = {
 	exito: function(mediaFiles){
 		var path = mediaFiles[0].fullPath;
-		alert(path.replace("file://", ""));
-		$("#fotoTomadaRegistro").html('<img src="'+path.replace("file://", "")+'" >');
+		//alert(path.replace("file://", ""));
+		$("#fotoTomadaRegistro").html('<img src="'+path+'" >');
 	},
 
 	error: function(){
