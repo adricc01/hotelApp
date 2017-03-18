@@ -57,7 +57,7 @@ var fn = {
 		alert("Enviando datos");
 		$.ajax({
 			method: "POST",
-			url: "http://www.colors.edu.mx/archivoTest.php",
+			url: "http://enlinea.cae3076.com/consulta/acceso.php",
 			data: { 
 				nombre: nombreR, 
 				email: emailR,
