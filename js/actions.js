@@ -55,6 +55,7 @@ var fn = {
 	},
 	enviarRegistro: function(nombreR, emailR, telefonoR, passwordR, fotoR){
 		alert("Enviando datos");
+		alert("Nombre: "+nombreR+" Email: "+emailR+" Telefono: "+telefonoR+" Password: "+passwordR+" Foto: "+fotoR);
 		$.ajax({
 			method: "POST",
 			url: "http://enlinea.cae3076.com/consulta/acceso.php",
