@@ -88,7 +88,7 @@
 		<div data-role="header">
 			<h1>HotelApp</h1>
 			<a href="#" class="fecha">
-				04/03/2017
+				
 			</a>
 			<a href="#" id="botonCerrarSesion" data-role="button" data-icon="delete">
 				Cerrar Sesión
@@ -145,13 +145,13 @@
 					Selecciona el tipo de habitación
 				</li>
 				<li>
-					<a href="#">Sencilla</a>
+					<a class="tipoHabitacion" href="#">Sencilla</a>
 				</li>
 				<li>
-					<a href="#">Doble</a>
+					<a class="tipoHabitacion" href="#">Doble</a>
 				</li>
 				<li>
-					<a href="#">Suite</a>
+					<a class="tipoHabitacion" href="#">Suite</a>
 				</li>
 			</ul>
 		</div>
@@ -162,7 +162,7 @@
 						<a href="#" data-rel="back">Cancelar</a>
 					</li>
 					<li>
-						<a href="#reserva2" class="ui-btn-active">Siguiente</a>
+						<a href="#" class="siguiente ui-btn-active">Siguiente</a>
 					</li>
 				</ul>
 			</div>
@@ -182,7 +182,7 @@
 				</li>
 				<li>
 					Número de personas:
-					<select>
+					<select class="numPersonas">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -191,7 +191,7 @@
 				</li>
 				<li>
 					Número de días:
-					<select>
+					<select class="numDias">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -200,7 +200,7 @@
 				</li>
 				<li>
 					Número de habitaciones:
-					<select>
+					<select class="numHabitaciones">
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -213,7 +213,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#" class="ui-btn-active"></a>
+						<a href="#reserva2" class="reservar ui-btn-active">Reservar</a>
 					</li>
 				</ul>
 			</div>
@@ -225,6 +225,7 @@
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript" src="js/API/mediaCapture.js"></script>
 	<script type="text/javascript" src="js/API/fileTransfer.js"></script>
+	<script type="text/javascript" src="js/API/networkInformation.js"></script>
 	<script type="text/javascript" src="js/actions.js"></script>
 	</body>
 </html>

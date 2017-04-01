@@ -4,13 +4,146 @@ var fn = {
 		document.addEventListener("deviceready", fn.init/*this.init*/, false);
 	},
 	init: function(){
+		fn.ponerFecha();
 		/*
 		 * En esta sección vamos a asociar
 		 * todos los eventos del "Click" al HTML
 		 */
+
 		$("#botonRegistrar").tap(fn.registar);
 		$("#botonTomarFoto").tap(mc.abrirCamara);
+		$(".tipoHabitacion").tap(fn.selectorTipoHabitacion);
+		$("#reserva1 .siguiente").tap(fn.reserva1Siguiente);
+		$("#reserva2 .reservar").tap(fn.realizarReservacion);
+		$("#botonCerrarSesion").tap(fn.cerrarSesion);
+		$("#botonIniciarSesion").tap(fn.iniciarSesion);
+
 	},
+	
+	iniciarSesion: function(){
+		/*
+		 * 1) Obtener datos de los inputs
+		 * 2) Verificar si estan vacios los inputs
+		 * 3) Enviar al servidor
+		 * 4) Si el servidor contesta correcto 
+		 	  guardar en local storage y cambiar pantalla
+		   5) Si el servidor contesta incorrecto
+		      Mostrar alerta al usuario
+		 */
+		var emailS = $("#emailSesion").val();
+		var passwordS = $("#passwordSesion").val();
+		try{
+			if(emailS == ""){
+				throw new Error("Debe indicar su usuario");
+			}
+			if(passwordS == ""){
+				throw new Error("Debe indicar la contraseña");
+			}
+			$.ajax({
+			 	method: "POST",
+			 	url: "http://www.colors.edu.mx/archivoTest.php",
+			 	data:{
+			 		emailServ : emailS,
+			 		passwordServ : passwordS
+			 	}
+			}).done(function(mensaje){
+			 	/*
+			 	 *Checar respuesta del servidor
+			 	 *Si se envió correctamente
+			 	 *Entonces guardamos guardamos los datos localmente
+			 	 */
+			 	 if(mensaje == 1){
+			 	 	window.localStorage.setItem("nombreUsuario", emailS);
+					window.location.href="#home";
+			 	 }else{
+			 	 	throw new Error("Error al iniciar sesión");
+			 	 }
+			});
+		}catch(error){
+			alert(error);
+		}
+	},
+	cerrarSesion: function(){
+		window.localStorage.removeItem("nombreUsuario");
+		window.location.href = "#registro";
+	},
+
+	ponerFecha: function(){
+		var fecha = new Date();
+		var dia = fecha.getDate();
+		var mes = fecha.getMonth() + 1;
+		var anio = fecha.getFullYear();
+		var hoy = dia+"/"+mes+"/"+anio;
+		$(".fecha").html(hoy);
+	},
+
+	realizarReservacion: function(){
+		/*
+		 * Obtener datos para realizar reserva
+		 */
+		 var reservacion = {
+		 	tipoHabitacion 	: $("#reserva1").attr("tipoHabitacion"),
+			numPersonas 	: $("#reserva2 select.numPersonas").val(),
+			numHabitaciones : $("#reserva2 select.numHabitaciones").val(),
+			numDias 		: $("#reserva2 select.numDias").val()
+		 };
+		 
+		 
+		/*
+		 *Corroborar si hay conexion a internet
+		 */
+		if(networkInfo.estaConectado()){
+			/*
+			 *Si hubo conexion 
+			 *Entonces enviamos los datos al servidor
+			 */
+			 $.ajax({
+			 	method: "POST",
+			 	url: "http://www.colors.edu.mx/archivoTest.php",
+			 	data:{
+			 		reservacionS : reservacion
+			 	}
+			 }).done(function(respuesta){
+			 	/*
+			 	 *Checar respuesta del servidor
+			 	 *Si se envió correctamente
+			 	 *Entonces guardamos guardamos los datos localmente
+			 	 */
+			 	 if(respuesta == 1){
+
+			 	 }else{
+			 	 	alert("Error al guardar reservaciòn en el servidor");
+			 	 }
+			 });
+		}else{
+
+		}
+		/*
+		 * Resetear datos del formulario
+		 */
+		$("#reserva1").removeAttr("tipoHabitacion");
+		$(".tipoHabitacion").css("background-color", "");
+		$("#reserva2 select").prop('selectedIndex',0).selectmenu("refresh", true);
+		window.location.href = "#home";
+	},
+
+	reserva1Siguiente: function(){
+		/*
+		 * Verificar que se haya seleccionadom un tipo de habitacion
+		 */
+		if($("#reserva1").attr("tipoHabitacion") != undefined){
+			window.location.href = "#reserva2";
+		}else{
+			alert("Es necesario seleccionar un tipo de habitación");
+		}
+	},
+
+	selectorTipoHabitacion: function(){
+		$(".tipoHabitacion").css("background-color", "");
+		$(this).css("background-color", "#38C");
+		$("#reserva1").attr("tipoHabitacion", $(this).text().toLowerCase());
+	},
+
 	registar: function(){
 		/*
 		 * 1) Obtener todos los datos del fomrmulario
@@ -83,11 +216,11 @@ var fn = {
 /*
  *Llamar al metodo Init en el navegador
  */
-//fn.init();
+fn.init();
 
 /*
  *Llamar deviceready para compilar
  */
 //
 //$(fn.deviceready());
-fn.deviceready();
+//fn.deviceready();
