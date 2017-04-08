@@ -17,9 +17,51 @@ var fn = {
 		$("#reserva2 .reservar").tap(fn.realizarReservacion);
 		$("#botonCerrarSesion").tap(fn.cerrarSesion);
 		$("#botonIniciarSesion").tap(fn.iniciarSesion);
+		$("#botonHistorial").tap(fn.mostrarHistorial);
+		$("#botonReservasPendientes").tap(fn.mostrarReservasPendientes);
+		$("#botonGaleria").tap(fn.mostrarGaleria);
+		$("#gallery").on('tap', 'img', fn.mostrarPopUp);
+	},
 
+	mostrarPopUp: function(){
+		var rutaImagen = $(this).attr("src");
+		$("#popupFoto img").attr("src", rutaImagen);
+		$("#popupGaleria").popup("open");
 	},
 	
+	mostrarGaleria: function(){
+		$.ajax({
+			method: "GET",
+			url: "http://www.colors.edu.mx/images.json"
+		}).done(function(data){
+			//console.log(data);
+			$("#gallery").html();
+			var contenido = "";
+			var contador = 1;
+			data.images.forEach(function(image){
+				if((contador % 2) == 1){
+					contenido += "<div class='ui-block-a'><img src='img/galeria/"+image.imageName+".jpg' title='"+image.description+"'></div>";
+				}else{
+					contenido += "<div class='ui-block-b'><img src='img/galeria/"+image.imageName+".jpg' title='"+image.description+"'></div>";
+				}
+				contador++;
+				//console.log(image.imageName);
+			});
+			$("#gallery").html(contenido);
+		});
+		//$.getJSON( "images.json", function(data){
+		//	console.log(data);
+		//});
+	},
+
+	mostrarReservasPendientes: function(){
+		almacen.cargarDatosReservasP();
+	},
+	
+	mostrarHistorial: function(){
+		almacen.cargarDatosHistorial();
+	},
+
 	iniciarSesion: function(){
 		/*
 		 * 1) Obtener datos de los inputs
@@ -87,8 +129,6 @@ var fn = {
 			numHabitaciones : $("#reserva2 select.numHabitaciones").val(),
 			numDias 		: $("#reserva2 select.numDias").val()
 		 };
-		 
-		 
 		/*
 		 *Corroborar si hay conexion a internet
 		 */
@@ -110,13 +150,19 @@ var fn = {
 			 	 *Entonces guardamos guardamos los datos localmente
 			 	 */
 			 	 if(respuesta == 1){
-
+			 	 	almacen.guardarReservasHistorial(	reservacion.tipoHabitacion,
+				 	 									reservacion.numPersonas,
+				 	 									reservacion.numHabitaciones,
+				 	 									reservacion.numDias);
 			 	 }else{
 			 	 	alert("Error al guardar reservaciòn en el servidor");
 			 	 }
 			 });
 		}else{
-
+			almacen.guardarReservaLocal(	reservacion.tipoHabitacion,
+				 	 							reservacion.numPersonas,
+				 	 							reservacion.numHabitaciones,
+				 	 							reservacion.numDias);
 		}
 		/*
 		 * Resetear datos del formulario
@@ -216,11 +262,11 @@ var fn = {
 /*
  *Llamar al metodo Init en el navegador
  */
-fn.init();
+//fn.init();
 
 /*
  *Llamar deviceready para compilar
  */
 //
-//$(fn.deviceready());
+$(fn.deviceready);
 //fn.deviceready();

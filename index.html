@@ -102,12 +102,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="#historial">
+					<a href="#historial" id="botonHistorial">
 						Historial de Reservas
 					</a>
 				</li>
 				<li>
-					<a href="#reservasPendientes">
+					<a href="#reservasPendientes" id="botonReservasPendientes">
 						Reservas Pendientes
 					</a>
 				</li>
@@ -117,7 +117,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#galeria">
+					<a href="#galeria" id="botonGaleria">
 						Galeria
 					</a>
 				</li>
@@ -219,13 +219,91 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="historial" data-role="page">
+		<div data-role="header">
+			<h1>Historial</h1>
+			<a href="#" data-rel="back">
+				Atrás
+			</a>
+		</div>
+		<div class="ui-content">
+			<table class="informacion">
+				<thead>
+					<tr>
+						<th>Tipo de habitación</th>					
+						<th>Número de personas</th>
+						<th>Número de habitaciones</th>
+						<th>Número de días</th>					
+					</tr>	
+				</thead>
+				<tbody id="listaHistorial">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="reservasPendientes" data-role="page">
+		<div data-role="header">
+			<h1>Reservas Pendientes</h1>
+			<a href="#" data-rel="back">
+				Atrás
+			</a>
+		</div>
+		<div class="ui-content">
+			<table class="informacion">
+				<thead>
+					<tr>
+						<th>Tipo de habitación</th>					
+						<th>Número de personas</th>
+						<th>Número de habitaciones</th>
+						<th>Número de días</th>					
+					</tr>	
+				</thead>
+				<tbody id="listaReservasPendientes">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="ubicacion" data-role="page">
+		<div data-role="header">
+			<h1>Ubicación</h1>
+			<a href="#" data-rel="back">
+				Atrás
+			</a>
+		</div>
+		<div class="mapa">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1885.6183305407499!2d-98.22313072821086!3d19.053329597719777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1491663286469" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+	</div>
+	<div id="galeria" data-role="page">
+		<div data-role="header">
+			<h1>Galeria</h1>
+			<a href="#" data-rel="back">
+				Atrás
+			</a>
+		</div>
+		<div class="ui-content">
+			<div id="gallery" class="ui-grid-a">
+				
+			</div>
+		</div>
+		<div id="popupGaleria" data-role="popup">
+			<a href="#" data-rel="back">
+				Cerrar
+			</a>
+			<div id="popupFoto" class="ui-content">
+				<img src="">
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript" src="js/API/mediaCapture.js"></script>
 	<script type="text/javascript" src="js/API/fileTransfer.js"></script>
 	<script type="text/javascript" src="js/API/networkInformation.js"></script>
+	<script type="text/javascript" src="js/almacen.js"></script>
 	<script type="text/javascript" src="js/actions.js"></script>
 	</body>
 </html>
